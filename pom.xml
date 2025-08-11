@@ -8,6 +8,7 @@
 
   <modules>
     <module>common</module>
+    <module>library-site</module>
     <module>web-tests</module>
     <module>api-tests</module>
     <module>library-app</module>

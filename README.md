@@ -5,6 +5,7 @@ This repository contains a reusable testing framework built with Java&nbsp;21. T
 ## Modules
 
 - **common** – shared utilities such as configuration helpers.
+- **library-site** – simple library web application for Selenium practice.
 - **web-tests** – Selenium based tests for web applications.
 - **api-tests** – REST API tests using RestAssured.
 
