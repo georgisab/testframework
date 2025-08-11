@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  selenium:
+    image: selenium/standalone-chrome:latest
+    shm_size: 2gb
+  tests:
+    build: .
+    environment:
+      - SELENIUM_REMOTE_URL=http://selenium:4444/wd/hub
+    depends_on:
+      - selenium
