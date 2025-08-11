@@ -1,18 +1,40 @@
-# testframework
-# Requirements
-* Maven 
-* min Java 8 
-* Eclipse
-* Chrome 76
+# Test Framework
 
-# How to setup  
-1. Import as Existing maven project;
-2. Update maven project on run mvn clean install from cmd in project folder;
-3. Run as JUnit -> vanguard.testframework.it.AppTests;
+This repository contains a reusable testing framework built with Java&nbsp;21. The project is organised as a multi-module Maven build and can be executed locally or inside Docker containers.
 
-# Project structure
-* test
-  * pom - Page object model 
-  * it - Store all integration test
-  * utils - using for helpers 
-  * resources - store all static resourses like drivers, xml, pictiures etc. 
+## Modules
+
+- **common** – shared utilities such as configuration helpers.
+- **web-tests** – Selenium based tests for web applications.
+- **api-tests** – REST API tests using RestAssured.
+
+## Requirements
+
+- Maven 3.9+
+- JDK 21 (if running locally)
+- Docker (to run inside containers)
+
+## Run tests locally
+
+```bash
+mvn test
+```
+
+Web tests fall back to a headless HtmlUnit driver when the `SELENIUM_REMOTE_URL` variable is not provided.
+
+## Run tests in Docker
+
+A Dockerfile and docker-compose configuration are provided. The compose setup starts a Selenium Chrome container and executes the Maven tests in a separate container.
+
+```bash
+docker-compose up --build --exit-code-from tests
+```
+
+### Configuration
+
+Both modules read configuration from system properties or environment variables via the `Config` helper.
+
+- `SELENIUM_REMOTE_URL` – URL of the Selenium server used by web tests.
+- `API_BASE_URL` – Base URL for API tests. When not supplied, a WireMock server is started locally.
+
+These values can be customised per application or environment.
